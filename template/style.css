@@ -1,0 +1,39 @@
+
+
+body {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+/* .content {
+ height: 2em;
+ overflow: hidden;
+} */
+
+.post-header {
+  text-align: center;
+  height: 100%;
+  margin: 16px 0;
+}
+
+
+
+
+.bot-line {
+  height: 2em;
+}
+
+.bot-line p {
+  margin-left: 1em;
+}
+
+.btn{
+  background-color:orange; /* Green */
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+

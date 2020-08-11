@@ -1,0 +1,46 @@
+{{define "view"}}
+
+{{template "header" .}}
+{{if .IsAuthor}}
+<p><a href="/delete?{{.Post.ID}}">Delete</a></p>
+<p><a href="/edit?{{.Post.ID}}">Edit</a></p>
+{{end}}
+<div class="container-lg p-3 border">
+    <p>{{.Post.Content}}</p>
+</div>
+{{if .Sess.IsAuthorized}}
+<p><a href="/comment?id={{.Post.ID}}">Comment</a></p>
+{{end}}
+{{range .Comments}}
+<hr>
+{{if .ComIsAuthor}}
+<div class="bot-line d-flex justify-content-end">
+
+    <a class="btn" href="/likecom?coid={{.CommentId}}&posid={{.PostId}}">
+        <i class="fas fa-thumbs-up">{{.L}}</i>
+    </a>
+    <a class="btn" href="/dislikecom?coid={{.CommentId}}&posid={{.PostId}}">
+        <i class="fas fa-thumbs-down">{{.D}}</i>
+    </a>
+    <p><a href="/deleteCom?coid={{.CommentId}}&posid={{.PostId}}">DeleteCom</a></p>
+</div>
+{{else}}
+<div class="bot-line d-flex justify-content-end">
+
+    <a class="btn" href="/likecom?coid={{.CommentId}}&posid={{.PostId}}">
+        <i class="fas fa-thumbs-up">{{.L}}</i>
+    </a>
+    <a class="btn" href="/dislikecom?coid={{.CommentId}}&posid={{.PostId}}">
+        <i class="fas fa-thumbs-down">{{.D}}</i>
+    </a>
+</div>
+{{end}}
+
+<p>{{.Author}}</p>
+<p>{{.Content}}</p>
+<hr>
+{{end}}
+
+{{template "footer"}}
+
+{{end}}

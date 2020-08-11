@@ -1,0 +1,79 @@
+{{define "cabinet"}}
+{{template "header" .}}
+<div class="container">
+  <h1>Your posts</h1>
+  {{range .Posts}}
+  <div class="row no-gutters">
+    <div class="post post-header col-2">
+      <div class="">
+        <p>{{.Author}}</p>
+      </div>
+    </div>
+    <div class="post col-10">
+      <div class="container-fluid my-3 p-3 border">
+        <div class="content">
+          {{if .ID}}
+          <p class="">{{.Content}}</p>
+          <!-- <p><a href="/view?{{.ID}}">View</a></p> -->
+          <a href="/view?id={{.ID}}">...</a>
+          {{end}}
+        </div>
+
+        <div class="bot-line d-flex justify-content-end">
+          <a class="btn" href="/like?id={{.ID}}">
+            <i class="fas fa-thumbs-up">{{.L}}</i>
+          </a>
+          <a class="btn" href="/dislike?id={{.ID}}">
+            <i class="fas fa-thumbs-down">{{.D}}</i>
+          </a>
+          <a class="btn btn-secondary btn-sm" role="button" href="/delete?{{.ID}}">Delete</a>
+
+          <a class="btn btn-secondary btn-sm" role="button" href="/edit?{{.ID}}">Edit</a>
+          <p>Thread: {{.Thread}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{end}}
+</div>
+<div class="container">
+  {{if .LikedPosts}}
+  <h1>Liked Posts</h1>
+  {{end}}
+  {{range .LikedPosts}}
+
+  <div class="row no-gutters">
+    <div class="post post-header col-2">
+      <div class="">
+        <p>{{.Author}}</p>
+      </div>
+    </div>
+    <div class="post col-10">
+      <div class="container-fluid my-3 p-3 border">
+        <div class="content">
+          {{if .ID}}
+          <p class="">{{.Content}}</p>
+          <!-- <p><a href="/view?{{.ID}}">View</a></p> -->
+          <a href="/view?id={{.ID}}">...</a>
+          {{end}}
+        </div>
+
+        <div class="bot-line d-flex justify-content-end">
+          <a class="btn" href="/like?id={{.ID}}">
+            <i class="fas fa-thumbs-up">{{.L}}</i>
+          </a>
+          <a class="btn" href="/dislike?id={{.ID}}">
+            <i class="fas fa-thumbs-down">{{.D}}</i>
+          </a>
+
+          <p>Thread: {{.Thread}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{end}}
+</div>
+
+{{template "footer"}}
+
+{{end}}

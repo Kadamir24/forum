@@ -1,0 +1,25 @@
+{{define "register"}}
+
+{{template "header"}}
+    <form role="form" method="POST" action="/register">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{.PHemail}}" />
+            <pre>{{.Email}}</pre>
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{.PHusername}}" />
+            <pre>{{.Username}}</pre>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" name="password"  />
+            <pre>{{.Password}}</pre>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+
+    </form>
+
+{{template "footer"}}
+{{end}}

@@ -1,0 +1,90 @@
+{{define "posts"}}
+{{template "header" .}}
+<div class="container">
+  <form role="form" method="POST" action="/filter">
+    <div class="form-group">
+      <label for="cars">filter by thread:</label>
+      <select id="thread" name="thread" required>
+        <option value="">None</option>
+        <option value="general">General</option>
+        <option value="cars">Cars</option>
+        <option value="moto">Moto</option>
+        <option value="offtop">Offtop</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+
+  </form>
+</div>
+{{if .Sess.IsAuthorized}}
+{{range .Posts}}
+<div class="row no-gutters">
+  <div class="post post-header col-2">
+    <div class="">
+      <p>{{.Author}}</p>
+    </div>
+  </div>
+  <div class="post col-10">
+    <div class="container-fluid my-3 p-3 border">
+      <div class="content">
+        {{if .ID}}
+        <p class="">{{.Content}}</p>
+        <!-- <p><a href="/view?{{.ID}}">View</a></p> -->
+        <a href="/view?id={{.ID}}">...</a>
+        {{end}}
+      </div>
+
+      <div class="bot-line d-flex justify-content-end">
+        <a class="btn" href="/like?id={{.ID}}">
+          <i class="fas fa-thumbs-up">{{.L}}</i>
+        </a>
+        <a class="btn" href="/dislike?id={{.ID}}">
+          <i class="fas fa-thumbs-down">{{.D}}</i>
+        </a>
+        {{if .IsAuthor}}
+        <a class="btn btn-secondary btn-sm" role="button" href="/delete?{{.ID}}">Delete</a>
+
+        <a class="btn btn-secondary btn-sm" role="button" href="/edit?{{.ID}}">Edit</a>
+        {{end}}
+        <p>Thread: {{.Thread}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}
+{{else}}
+{{range .Posts}}
+<div class="row no-gutters">
+  <div class="post-header col-2">
+    <div class="">
+      <p>{{.Author}}</p>
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="container-fluid my-3 p-3 border">
+      <div class="content">
+        {{if .ID}}
+        <p class="">{{.Content}}</p>
+        <a href="/view?id={{.ID}}">...</a>
+
+        <!-- <p><a href="/view?{{.ID}}">View</a></p> -->
+        {{end}}
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <i class="btn fas fa-thumbs-up">{{.L}}</i>
+        <i class="btn fas fa-thumbs-down">{{.D}}</i>
+        <p>Thread: {{.Thread}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{{end}}
+{{end}}
+
+{{template "footer"}}
+{{end}}
