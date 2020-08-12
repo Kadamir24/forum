@@ -13,6 +13,7 @@ This project consists in creating a web forum that allows :
 ## Back-end
 * Golang
 * SQLite
+* Docker
 
 # Usage
 ```go
